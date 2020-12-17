@@ -17,9 +17,17 @@ class TaskListViewModel : ViewModel() {
     }*/
 
     private val taskRepository = TaskRepository.get()
-    val  taskListLiveData = taskRepository.getTasks()
+   // val  taskListLiveData = taskRepository.getTasks()
+    val toDoListLiveData = taskRepository.getTask(0)
+    val in_ProgressListLiveData = taskRepository.getTask(1)
+    val doneListLiveData = taskRepository.getTask(2)
 
     fun addTask(task: Task) {
         taskRepository.addTask(task)
     }
+
+    fun updateTask(task:Task){
+        TaskRepository.get().updateTask(task)
+    }
+
 }

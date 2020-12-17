@@ -3,32 +3,20 @@
 
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <padding
-                android:left="4dp"
-                android:top="4dp"
-                android:right="4dp"
-                android:bottom="4dp"
-                />
-            <gradient android:startColor="#54a1de" android:endColor="#54a1de" android:angle="270" />
+            <padding android:bottom="4dp" android:left="4dp" android:right="4dp" android:top="4dp" />
+            <gradient android:angle="270" android:endColor="#54a1de" android:startColor="#54a1de" />
             <corners android:topLeftRadius="4dp" android:topRightRadius="4dp" />
 
 
         </shape>
     </item>
 
-    <item android:state_focused="false"
-        >
+    <item android:state_focused="false">
         <shape android:shape="rectangle">
-            <padding
-                android:left="4dp"
-                android:top="4dp"
-                android:right="4dp"
-                android:bottom="4dp"
-                />
+            <padding android:bottom="4dp" android:left="4dp" android:right="4dp" android:top="4dp" />
 
-            <gradient android:startColor="@color/colorPrimary" android:endColor="@color/colorPrimaryDark" android:centerColor="#e5e1ea" android:angle="0" />
-            <corners android:topLeftRadius="8dp"
-                android:bottomLeftRadius="8dp"/>
+            <gradient android:angle="0" android:centerColor="#e5e1ea" android:endColor="@color/colorPrimaryDark" android:startColor="@color/colorPrimary" />
+            <corners android:bottomLeftRadius="8dp" android:topLeftRadius="8dp" />
 
         </shape>
     </item>

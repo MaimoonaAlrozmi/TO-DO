@@ -9,6 +9,5 @@ data class Task(@PrimaryKey val id: UUID = UUID.randomUUID(),
                 var title: String="",
                 var details: String="",
                 var date: Date= Date(),
-                var move: Int = 0
-) {
-}
+                var tab: Int = 0
+) {}

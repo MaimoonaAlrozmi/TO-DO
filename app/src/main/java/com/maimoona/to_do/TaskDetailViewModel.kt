@@ -9,6 +9,7 @@ import java.util.*
 class TaskDetailViewModel() : ViewModel() {
 
     private val taskRepository = TaskRepository.get()
+
     private val taskIdLiveData = MutableLiveData<UUID>()
 
     var taskLiveData: LiveData<Task?> =

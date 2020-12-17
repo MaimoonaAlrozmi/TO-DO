@@ -15,8 +15,8 @@ interface TaskDao {
     @Query("SELECT * FROM Task WHERE id=(:id)")
     fun getTask(id: UUID): LiveData<Task?>
 
-    @Query("SELECT * FROM task WHERE move=(:move) order by date")
-    fun getTasksByMove(move: Int):  LiveData<List<Task>>
+    @Query("SELECT * FROM Task WHERE tab=(:tab)")
+    fun getTask(tab: Int): LiveData<List<Task>>
 
     @Update
     fun updateTask(task: Task)

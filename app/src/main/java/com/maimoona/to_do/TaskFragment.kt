@@ -21,7 +21,7 @@ private const val REQUEST_DATE = 0
 private const val ARG_TASK_ID = "task_id"
 private const val DIALOG_DATE = "DialogDate"
 
-class TaskFragment : Fragment() , DatePickerFragment.Callbacks{
+class TaskFragment : Fragment(), DatePickerFragment.Callbacks {
 
     private lateinit var task: Task
     private lateinit var noField: EditText
@@ -52,11 +52,6 @@ class TaskFragment : Fragment() , DatePickerFragment.Callbacks{
         detailsField = view.findViewById(R.id.edit_details)
         dateButton = view.findViewById(R.id.btn_date) as Button
 
-        dateButton.apply {
-            text = task.date.toString()
-            isEnabled = false
-        }
-
         return view
     }
 
@@ -80,15 +75,37 @@ class TaskFragment : Fragment() , DatePickerFragment.Callbacks{
 
     override fun onStart() {
         super.onStart()
+        taskDetailViewModel.saveTask(task)
+
+        val detailsWatcher = object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int) {
+                task.details = s.toString()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        }
+        detailsField.addTextChangedListener(detailsWatcher)
+
         val titleWatcher = object : TextWatcher {
             override fun beforeTextChanged(
                 sequence: CharSequence?,
                 start: Int,
                 count: Int,
                 after: Int
-            ) {
-// This space intentionally left blank
-            }
+            ) {}
 
             override fun onTextChanged(
                 sequence: CharSequence?,
@@ -97,15 +114,12 @@ class TaskFragment : Fragment() , DatePickerFragment.Callbacks{
                 count: Int
             ) {
                 task.title = sequence.toString()
-                task.details = sequence.toString()
             }
 
             override fun afterTextChanged(sequence: Editable?) {
-// This one too
             }
         }
         titleField.addTextChangedListener(titleWatcher)
-        detailsField.addTextChangedListener(titleWatcher)
 
         dateButton.setOnClickListener {
             DatePickerFragment.newInstance(task.date).apply {
@@ -115,15 +129,15 @@ class TaskFragment : Fragment() , DatePickerFragment.Callbacks{
         }
     }
 
-
     override fun onDateSelected(expireDate: Date) {
         task.date = expireDate
         updateUI()
     }
+
     private fun updateUI() {
         titleField.setText(task.title)
         detailsField.setText(task.details)
-        dateButton.text = task.date.toString()
+        dateButton
     }
 
     companion object {
